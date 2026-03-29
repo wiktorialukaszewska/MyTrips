@@ -1,6 +1,6 @@
 
 
-
+=======
 # MyTrips – aplikacja do planowania podróży
 
 ## Opis
@@ -42,23 +42,59 @@ To także świetny projekt do nauki obiektowego podejścia w programowaniu, poni
 6. Użytkownik może oznaczać miejsca jako odwiedzone.
 
 ## User Stories / UX
-**Trip:**  
-- Ekran „Lista podróży”  
-- [Przycisk „Dodaj podróż”] → formularz: Nazwa | Start | End → Save → powrót do listy  
+### Trip
 
-**Place:**  
-- Ekran „Miejsca w podróży”  
-- [Przycisk „Dodaj miejsce”] → formularz: Trip | Nazwa | Opis | Data | Odwiedzone → Save → powrót do listy  
+**User Story:**  
+Jako użytkownik chcę dodać podróż, aby zaplanować wyjazd.
 
-**Activity:**  
-- Ekran „Aktywności”  
-- [Przycisk „Dodaj aktywność”] → Trip | Nazwa | Data/Time → Save  
+- Ekran „Lista podróży” – użytkownik widzi swoje podróże oraz przycisk „Dodaj podróż”  
+- [Przycisk „Dodaj podróż”] → przejście do formularza  
+- Formularz: Nazwa | Start | End → [Save]  
+- Po zapisaniu → powrót do listy i nowa podróż widoczna na ekranie  
 
-**Expense:**  
-- Ekran „Wydatki”  
-- [Przycisk „Dodaj wydatek”] → Trip | Kwota | Kategoria | Data → Save  
+![Trip](img/trip.jpg)
 
-*(Szkice możesz zrobić w Paincie lub na kartce i dodać jako obrazki w folderze projektu)*
+---
+
+### Place
+
+**User Story:**  
+Jako użytkownik chcę dodawać miejsca, aby zaplanować zwiedzanie.
+
+- Ekran „Miejsca w podróży” – lista miejsc + przycisk „Dodaj miejsce”  
+- [Przycisk „Dodaj miejsce”] → formularz  
+- Formularz: Trip | Nazwa | Opis | Data | Odwiedzone → [Save]  
+- Po zapisaniu → powrót do listy miejsc  
+
+![Place](img/place.jpg)
+
+---
+
+### Activity
+
+**User Story:**  
+Jako użytkownik chcę planować aktywności, aby uporządkować harmonogram.
+
+- Ekran „Aktywności” – lista + przycisk „Dodaj aktywność”  
+- [Przycisk „Dodaj aktywność”] → formularz  
+- Formularz: Trip | Nazwa | Data/Time → [Save]  
+- Po zapisaniu → aktywność pojawia się na liście  
+
+![Activity](img/activity.jpg)
+
+---
+
+### Expense
+
+**User Story:**  
+Jako użytkownik chcę dodawać wydatki, aby kontrolować budżet.
+
+- Ekran „Wydatki” – lista + przycisk „Dodaj wydatek”  
+- [Przycisk „Dodaj wydatek”] → formularz  
+- Formularz: Trip | Kwota | Kategoria | Data → [Save]  
+- Po zapisaniu → wydatek pojawia się na liście  
+
+![Expense](img/expense.jpg)
 
 ## Model danych (ERD)
 [Trip]
