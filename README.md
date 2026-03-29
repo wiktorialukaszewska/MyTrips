@@ -99,7 +99,7 @@ Jako użytkownik chcę dodawać wydatki, aby kontrolować budżet.
 ## Model danych (ERD)
 Diagram przedstawia encje aplikacji, ich atrybuty oraz relacje między podróżami, miejscami, aktywnościami i wydatkami.
 
-![ERD](img/erd.jpg)
+![ERD](img/erd.jpg) 
 
 [Trip]
 - name
