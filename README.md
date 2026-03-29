@@ -97,6 +97,10 @@ Jako użytkownik chcę dodawać wydatki, aby kontrolować budżet.
 ![Expense](img/expense.jpg)
 
 ## Model danych (ERD)
+Diagram przedstawia encje aplikacji, ich atrybuty oraz relacje między podróżami, miejscami, aktywnościami i wydatkami.
+
+![ERD](img/erd.jpg)
+
 [Trip]
 - name
 - start_date
@@ -120,4 +124,4 @@ Jako użytkownik chcę dodawać wydatki, aby kontrolować budżet.
 - amount
 - category
 - date
->>>>>>> 03d6146 (Initial commit – projekt MyTrips)
+
