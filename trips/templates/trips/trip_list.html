@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moje podróże</title>
+</head>
+<body>
+    <h1>Moje podróże</h1>
+
+    {% if trips %}
+        {% for trip in trips %}
+        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h2>{{ trip.name }}</h2>
+            <p>📅 {{ trip.start_date }} – {{ trip.end_date }}</p>
+            <a href="{% url 'trip-map' trip.pk %}">🗺️ Zobacz mapę</a> |
+            <a href="{% url 'add-place' trip.pk %}">➕ Dodaj miejsce</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Nie masz jeszcze żadnych podróży. Dodaj pierwszą w <a href="/admin/trips/trip/add/">panelu admina</a>!</p>
+    {% endif %}
+</body>
+</html>

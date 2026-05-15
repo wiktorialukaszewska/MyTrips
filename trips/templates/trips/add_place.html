@@ -16,11 +16,10 @@
     </form>
 
     <script>
-        document.getElementById('id_address').addEventListener('blur', function() {
-            const address = this.value;
-            if (!address) return;
+        function getCoords(value) {
+            if (!value) return;
 
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(value)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0) {
@@ -33,10 +32,20 @@
                         document.getElementById('coords-status').style.color = 'green';
                     } else {
                         document.getElementById('coords-status').textContent =
-                            '❌ Nie znaleziono adresu. Sprawdź czy jest poprawny.';
+                            '❌ Nie znaleziono. Spróbuj wpisać dokładniejszy adres.';
                         document.getElementById('coords-status').style.color = 'red';
                     }
                 });
+        }
+
+        // Szuka po nazwie miejsca
+        document.getElementById('id_name').addEventListener('blur', function() {
+            getCoords(this.value);
+        });
+
+        // Szuka po adresie (nadpisuje jeśli bardziej szczegółowy)
+        document.getElementById('id_address').addEventListener('blur', function() {
+            getCoords(this.value);
         });
     </script>
 

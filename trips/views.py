@@ -36,14 +36,21 @@ def add_place(request, trip_pk):
         form = PlaceForm(request.POST)
         if form.is_valid():
             place = form.save(commit=False)
+            place.trip = trip
             place.latitude = request.POST.get('latitude')
             place.longitude = request.POST.get('longitude')
             place.save()
             return redirect('trip-map', trip_pk=trip_pk)
     else:
-        form = PlaceForm(initial={'trip': trip})
+        form = PlaceForm()
     return render(request, 'trips/add_place.html', {
         'form': form,
         'trip': trip,
         'google_api_key': settings.GOOGLE_MAPS_API_KEY,
+    })
+
+def trip_list(request):
+    trips = Trip.objects.all()
+    return render(request, 'trips/trip_list.html', {
+        'trips': trips,
     })
