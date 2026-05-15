@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dodaj miejsce</title>
+</head>
+<body>
+    <h1>Dodaj miejsce do: {{ trip.name }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <p id="coords-status" style="color: gray;">Współrzędne zostaną pobrane automatycznie.</p>
+        <button type="submit">Zapisz miejsce</button>
+    </form>
+
+    <script>
+        document.getElementById('id_address').addEventListener('blur', function() {
+            const address = this.value;
+            if (!address) return;
+
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        const lat = parseFloat(data[0].lat);
+                        const lng = parseFloat(data[0].lon);
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lng;
+                        document.getElementById('coords-status').textContent =
+                            '✅ Znaleziono: ' + lat.toFixed(4) + ', ' + lng.toFixed(4);
+                        document.getElementById('coords-status').style.color = 'green';
+                    } else {
+                        document.getElementById('coords-status').textContent =
+                            '❌ Nie znaleziono adresu. Sprawdź czy jest poprawny.';
+                        document.getElementById('coords-status').style.color = 'red';
+                    }
+                });
+        });
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}"
+        async defer>
+    </script>
+</body>
+</html>

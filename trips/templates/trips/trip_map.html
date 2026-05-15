@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa podróży: {{ trip.name }}</title>
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>{{ trip.name }}</h1>
+    <div id="map"></div>
+
+    <script>
+        const places = {{ places_json|safe }};
+
+        function initMap() {
+            // Wycentruj mapę na pierwszym miejscu (lub domyślnie Polska)
+            const center = places.length > 0
+                ? { lat: places[0].lat, lng: places[0].lng }
+                : { lat: 52.0, lng: 19.0 };
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: center,
+            });
+
+            // Dodaj pinezkę dla każdego miejsca
+            places.forEach(place => {
+                const marker = new google.maps.Marker({
+                    position: { lat: place.lat, lng: place.lng },
+                    map: map,
+                    title: place.name,
+                });
+
+                // Dymek po kliknięciu pinezki
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<h3>${place.name}</h3><p>${place.notes}</p>`,
+                });
+
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&callback=initMap"
+        async defer>
+    </script>
+</body>
+</html>
