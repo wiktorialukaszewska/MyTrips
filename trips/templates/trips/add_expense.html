@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dodaj wydatek</title>
+</head>
+<body>
+    <h1>Dodaj wydatek do: {{ trip.name }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Zapisz wydatek</button>
+    </form>
+
+    <a href="{% url 'expense-list' trip.pk %}">← Wróć do wydatków</a>
+</body>
+</html>

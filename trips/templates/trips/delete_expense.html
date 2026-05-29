@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuń wydatek</title>
+</head>
+<body>
+    <h1>Czy na pewno chcesz usunąć wydatek "{{ expense.description }}"?</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Tak, usuń</button>
+    </form>
+
+    <a href="{% url 'expense-list' trip_pk %}">← Anuluj</a>
+</body>
+</html>

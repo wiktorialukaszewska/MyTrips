@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Miejsca – {{ trip.name }}</title>
+</head>
+<body>
+    <h1>Miejsca w podróży: {{ trip.name }}</h1>
+    <a href="{% url 'add-place' trip.pk %}">➕ Dodaj miejsce</a> |
+    <a href="{% url 'trip-map' trip.pk %}">🗺️ Zobacz mapę</a> |
+    <a href="{% url 'trip-list' %}">← Wróć do listy podróży</a>
+
+    <hr>
+
+    {% if places %}
+        {% for place in places %}
+        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h2>{{ place.name }}</h2>
+            <p>📍 {{ place.address }}</p>
+            {% if place.notes %}
+            <p>📝 {{ place.notes }}</p>
+            {% endif %}
+            <a href="{% url 'delete-place' trip.pk place.pk %}">🗑️ Usuń</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Nie masz jeszcze żadnych miejsc w tej podróży.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wydatki – {{ trip.name }}</title>
+</head>
+<body>
+    <h1>Wydatki w podróży: {{ trip.name }}</h1>
+    <a href="{% url 'add-expense' trip.pk %}">➕ Dodaj wydatek</a> |
+    <a href="{% url 'trip-list' %}">← Wróć do listy podróży</a>
+
+    <hr>
+
+    {% if expenses %}
+        {% for expense in expenses %}
+        <div style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h2>{{ expense.description }}</h2>
+            <p>💰 {{ expense.amount }} PLN</p>
+            <p>📅 {{ expense.date }}</p>
+            <a href="{% url 'delete-expense' trip.pk expense.pk %}">🗑️ Usuń</a>
+        </div>
+        {% endfor %}
+        <hr>
+        <h2>Suma: {{ total }} PLN</h2>
+    {% else %}
+        <p>Nie masz jeszcze żadnych wydatków w tej podróży.</p>
+    {% endif %}
+</body>
+</html>

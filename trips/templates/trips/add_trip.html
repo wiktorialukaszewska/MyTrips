@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dodaj podróż</title>
+</head>
+<body>
+    <h1>Dodaj nową podróż</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Zapisz podróż</button>
+    </form>
+
+    <a href="{% url 'trip-list' %}">← Wróć do listy</a>
+</body>
+</html>
